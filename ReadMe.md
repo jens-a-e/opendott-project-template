@@ -20,4 +20,4 @@ Any other original content is licensed under a [Creative Commons Attribution-Sha
 
 # Acknowledgments
 
-🇪🇺 This project is part of [Open Design of Trusted Things (OpenDoTT) doctiral training network](https://opendott.org.) and has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 813508.
+🇪🇺 This project is part of [Open Design of Trusted Things (OpenDoTT) doctoral training network](https://opendott.org.) and has received funding from the European Union’s Horizon 2020 research and innovation programme under the Marie Skłodowska-Curie grant agreement No. 813508.
