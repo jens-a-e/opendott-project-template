@@ -1,5 +1,6 @@
 # Make sure you change the filename from Paper.md to something meaningful.
 SOURCE := ReadMe.md
+TARGET_NAME := Name-of-Researchoutput
 
 HTML := $(patsubst %.md,index.html, $(SOURCE))
 PDF := $(patsubst %.md,%.pdf, $(SOURCE))
@@ -17,6 +18,10 @@ ARGS := \
 	--csl=.styles/acm-sig-proceedings-long-author-list.csl \
 	--toc
 
+.PHONY : archive
+archive:
+	git archive -o $(TARGET_NAME).zip HEAD
+	git submodule --quiet foreach 'cd "$$toplevel"; zip -ru $(TARGET_NAME).zip "$$sm_path"'
 
 .PHONY : info
 info:
@@ -24,8 +29,8 @@ info:
 	@echo $(SOURCE)
 	@echo --- Output ---
 	@echo $(PDF)
-	@echo $(PDF)
-	@echo $(PDF)
+	@echo $(HTML)
+	@echo $(DOCX)
 
 
 .PHONY : watch
