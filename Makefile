@@ -1,10 +1,14 @@
 # Make sure you change the filename from Paper.md to something meaningful.
-SOURCE := ReadMe.md
-TARGET_NAME := Name-of-Researchoutput
+TITLE := Name of Research Output
 
-HTML := $(patsubst %.md,index.html, $(SOURCE))
-PDF := $(patsubst %.md,%.pdf, $(SOURCE))
-DOCX := $(patsubst %.md,%.docx, $(SOURCE))
+# Replace all spaces with - to make it path safe
+TARGET_NAME := $(subst $() $(),-,$(TITLE))
+
+SOURCE := ReadMe.md
+
+HTML :=  index.html #$(patsubst %.md,index.html, $(SOURCE))
+PDF := $(TARGET_NAME).pdf #$(patsubst %.md,%.pdf, $(SOURCE))
+DOCX := $(TARGET_NAME).docx #$(patsubst %.md,%.docx, $(SOURCE))
 ARCHIVE := $(TARGET_NAME).zip
 
 # STYLE := _pandoc/pandoc.css
@@ -20,9 +24,10 @@ ARGS := \
 	# --toc
 
 .PHONY : archive
-archive:
+archive: $(ARCHIVE)
+$(ARCHIVE) : .*
 	git archive -o $(ARCHIVE) HEAD
-	git submodule --quiet foreach 'cd "$$toplevel"; zip -ru $(ARCHIVE) "$$sm_path"'
+	git submodule --quiet foreach 'cd "$$toplevel"; zip -ru --exclude=*.git* $(ARCHIVE) "$$sm_path"'
 
 .PHONY : info
 info:
@@ -40,7 +45,7 @@ watch:
 	@ls *.md | entr make acm
 
 .PHONY : all
-all : $(HTML) $(PDF) $(DOCX)
+all : $(HTML) $(PDF) $(DOCX) $(ARCHIVE)
 
 .PHONY : html
 html: $(HTML)
@@ -68,7 +73,7 @@ $(PDF) : $(SOURCE)
 		-V urlcolor=red \
 		-V toccolor=gray \
 		--pdf-engine xelatex \
-		-o $(TARGET_NAME).pdf $<
+		-o $@ $<
 
 .PHONY : doc
 doc: $(DOCX)
@@ -77,10 +82,10 @@ $(DOCX) : $(SOURCE)
 	@pandoc $(OPTS) $(ARGS) -w docx \
 		--katex \
 		--default-image-extension=png \
-		-o $(TARGET_NAME).docx $<
+		-o $@ $<
 # --reference-doc=_pandoc/base.docx
 
 .PHONY : clean
 clean :
 	@echo --- Deleting generated files ---
-	@-rm $(HTML) $(PDF) $(DOCX)
+	@-rm $(HTML) $(PDF) $(DOCX) $(ARCHIVE)
