@@ -57,7 +57,6 @@ $(HTML) : $(SOURCE)
 		--mathjax \
 		--metadata link-citations=true \
 		--metadata linkReferences=true \
-		--metadata title=$(TARGET_NAME) \
 		-o $@ $<
 
 .PHONY : pdf

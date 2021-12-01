@@ -1,3 +1,9 @@
+---
+title: Title of the Research Output
+subtitle: Optional Subtitle
+author: Jens Alexander Ewald (ESR1)
+---
+
 > This is a template repository for research work I conduct; adjust to your own needs.
 
 # Project Title
