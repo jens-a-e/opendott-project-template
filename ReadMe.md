@@ -1,7 +1,20 @@
 ---
 title: Title of the Research Output
 subtitle: Optional Subtitle
-author: Jens Alexander Ewald (ESR1)
+author:
+- Jens Alexander Ewald (ESR1)
+- Someone Else (Supervision)
+abstract: |
+  Compiling research output comprised of different kinds of authoring types such as source code, slideshows, images, long form texts, etc. is challenging to bring together and keep up to date in a reproducable form. The scripting efforts in this repository attempt to support this in an effort to foster plaintext based research and avoid heavy formats such as MS Word doduments as storage.
+subject: Research Documentation Automation
+keywords:
+- plaintext
+- research
+- automation
+- openformats
+category: Utilities
+description: |
+  This repository contains scritp files to enable the automated compilation of research documentation in a range of different formats using Pandoc.
 ---
 
 > This is a template repository for research work I conduct; adjust to your own needs.
